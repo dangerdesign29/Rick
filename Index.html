@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Declaração de Perdão de Amor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #ff6b8b;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .heart {
+            color: #ff6b8b;
+            font-size: 2.5rem;
+            margin: 20px 0;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        .question {
+            font-size: 1.8rem;
+            color: #444;
+            margin: 30px 0;
+            font-weight: 600;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            min-width: 180px;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #4cd964, #5ac8fa);
+            color: white;
+            position: relative;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(76, 217, 100, 0.3);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #ff3b30, #ff9500);
+            color: white;
+            position: relative;
+        }
+
+        .btn-no:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 59, 48, 0.3);
+        }
+
+        .photo-gallery {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .photo-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 200px;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .video-container {
+            display: none;
+            margin: 40px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            max-width: 560px;
+            height: 315px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .whatsapp-redirect {
+            display: none;
+            margin: 40px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #25D366;
+            color: white;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn i {
+            margin-right: 15px;
+            font-size: 2rem;
+        }
+
+        .footer {
+            margin-top: 20px;
+            color: #777;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .music-control {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .music-control i {
+            font-size: 1.5rem;
+            color: #ff6b8b;
+        }
+
+        .counter {
+            font-size: 1rem;
+            color: #777;
+            margin-top: 10px;
+            display: none;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            5% { transform: scale(1.1); }
+            10% { transform: scale(1); }
+            15% { transform: scale(1.1); }
+            20% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .btn {
+                padding: 15px 30px;
+                font-size: 1.3rem;
+                min-width: 150px;
+            }
+            
+            .photo-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .photo-item {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .question {
+                font-size: 1.4rem;
+            }
+            
+            .buttons {
+                gap: 15px;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1.2rem;
+                min-width: 130px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main-container">
+        <div class="music-control" id="music-control">
+            <i class="fas fa-music"></i>
+        </div>
+        
+        <h1>Declaração de Perdão</h1>
+        
+        <div class="heart">
+            <i class="fas fa-heart"></i>
+        </div>
+        
+        <p class="subtitle">
+            Cada amor tem seus altos e baixos, mas o verdadeiro amor sempre encontra o caminho de volta.<br>
+            Este é um pedido especial de perdão para reacender a chama do nosso amor.
+        </p>
+        
+        <div class="question" id="question">
+            Você aceita me perdoar e dar uma nova chance ao nosso amor?
+        </div>
+        
+        <div class="buttons">
+            <button class="btn btn-yes" id="yes-btn">Sim, eu aceito!</button>
+            <button class="btn btn-no" id="no-btn">Não</button>
+        </div>
+        
+        <div class="counter" id="counter">
+            Tentativas de fuga: <span id="escape-count">0</span>
+        </div>
+        
+        <div class="photo-gallery" id="photo-gallery">
+            <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Amor 1">
+            </div>
+            <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1529254479751-fbacb4c7a587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Amor 2">
+            </div>
+            <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1527838832700-5059252407fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=698&q=80" alt="Amor 3">
+            </div>
+            <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Amor 4">
+            </div>
+        </div>
+        
+        <div class="video-container" id="video-container">
+            <iframe src="https://www.youtube.com/embed/5_sfnQDr1-o?controls=0&autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        
+        <div class="whatsapp-redirect" id="whatsapp-redirect">
+            <a href="https://wa.me/5511999999999?text=Eu%20aceito%20seu%20pedido%20de%20perdão%20e%20quero%20conversar!" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Enviar mensagem no WhatsApp
+            </a>
+            <p style="margin-top: 15px; color: #666;">Clique no botão acima para enviar uma mensagem direta!</p>
+        </div>
+    </div>
+    
+    <div class="footer">
+        Feito com <i class="fas fa-heart" style="color:#ff6b8b;"></i> para demonstrar amor sincero
+    </div>
+    
+    <audio id="love-music" loop>
+        <source src="https://assets.codepen.io/1468070/romantic-music.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const yesBtn = document.getElementById('yes-btn');
+            const noBtn = document.getElementById('no-btn');
+            const mainContainer = document.getElementById('main-container');
+            const photoGallery = document.getElementById('photo-gallery');
+            const videoContainer = document.getElementById('video-container');
+            const whatsappRedirect = document.getElementById('whatsapp-redirect');
+            const question = document.getElementById('question');
+            const musicControl = document.getElementById('music-control');
+            const loveMusic = document.getElementById('love-music');
+            const counter = document.getElementById('counter');
+            const escapeCount = document.getElementById('escape-count');
+            
+            let noCount = 0;
+            let isMusicPlaying = false;
+            
+            // Função para mover o botão "Não" para uma posição aleatória
+            function moveNoButton() {
+                noCount++;
+                escapeCount.textContent = noCount;
+                
+                // Mostra o contador após a primeira tentativa
+                if (noCount === 1) {
+                    counter.style.display = 'block';
+                }
+                
+                // Obtém as dimensões da janela
+                const containerRect = mainContainer.getBoundingClientRect();
+                const buttonRect = noBtn.getBoundingClientRect();
+                
+                // Calcula posições aleatórias dentro do container
+                const maxX = containerRect.width - buttonRect.width - 30;
+                const maxY = containerRect.height - buttonRect.height - 30;
+                
+                // Gera posições aleatórias
+                const randomX = Math.floor(Math.random() * maxX);
+                const randomY = Math.floor(Math.random() * maxY);
+                
+                // Aplica as novas posições
+                noBtn.style.position = 'absolute';
+                noBtn.style.left = `${randomX}px`;
+                noBtn.style.top = `${randomY}px`;
+                
+                // Altera o texto do botão após algumas tentativas
+                if (noCount === 3) {
+                    noBtn.textContent = "Tem certeza?";
+                } else if (noCount === 6) {
+                    noBtn.textContent = "Por favor!";
+                } else if (noCount === 9) {
+                    noBtn.textContent = "Vamos pensar...";
+                } else if (noCount === 12) {
+                    noBtn.textContent = "Última chance!";
+                } else if (noCount >= 15) {
+                    noBtn.textContent = "OK, não!";
+                }
+            }
+            
+            // Função para ativar a sequência do "Sim"
+            function activateYesSequence() {
+                // Altera a pergunta
+                question.textContent = "Obrigado por aceitar meu perdão! Você é incrível!";
+                
+                // Esconde os botões
+                yesBtn.style.display = 'none';
+                noBtn.style.display = 'none';
+                counter.style.display = 'none';
+                
+                // Toca a música
+                loveMusic.play();
+                isMusicPlaying = true;
+                musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                
+                // Mostra a galeria de fotos
+                photoGallery.style.display = 'grid';
+                
+                // Após 5 segundos, mostra o vídeo
+                setTimeout(() => {
+                    photoGallery.style.display = 'none';
+                    videoContainer.style.display = 'block';
+                }, 5000);
+                
+                // Após 15 segundos, mostra o redirecionamento para WhatsApp
+                setTimeout(() => {
+                    videoContainer.style.display = 'none';
+                    whatsappRedirect.style.display = 'block';
+                    
+                    // Rolagem suave para o botão do WhatsApp
+                    whatsappRedirect.scrollIntoView({ behavior: 'smooth' });
+                }, 15000);
+            }
+            
+            // Adiciona eventos aos botões
+            noBtn.addEventListener('click', moveNoButton);
+            yesBtn.addEventListener('click', activateYesSequence);
+            
+            // Controle de música
+            musicControl.addEventListener('click', function() {
+                if (isMusicPlaying) {
+                    loveMusic.pause();
+                    musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                } else {
+                    loveMusic.play();
+                    musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                }
+                isMusicPlaying = !isMusicPlaying;
+            });
+            
+            // Adiciona efeito de toque ao botão Sim no mobile
+            yesBtn.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            
+            yesBtn.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+            
+            // Inicia a música automaticamente se o usuário tocar na tela (necessário para autoplay em mobile)
+            document.addEventListener('touchstart', function initAudio() {
+                if (!isMusicPlaying) {
+                    loveMusic.volume = 0.5;
+                }
+                document.removeEventListener('touchstart', initAudio);
+            });
+            
+            // Adiciona efeito de confete quando o botão Sim é clicado
+            yesBtn.addEventListener('click', function() {
+                createConfetti();
+            });
+            
+            // Função para criar efeito de confete
+            function createConfetti() {
+                const confettiCount = 100;
+                const container = document.querySelector('.container');
+                
+                for (let i = 0; i < confettiCount; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.innerHTML = '❤️';
+                    confetti.style.position = 'absolute';
+                    confetti.style.fontSize = Math.random() * 20 + 10 + 'px';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-50px';
+                    confetti.style.opacity = Math.random() * 0.5 + 0.5;
+                    confetti.style.zIndex = '1000';
+                    confetti.style.userSelect = 'none';
+                    confetti.style.pointerEvents = 'none';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    // Animação do confete
+                    const animation = confetti.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                        { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: Math.random() * 3000 + 2000,
+                        easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                    });
+                    
+                    // Remove o confete após a animação
+                    animation.onfinish = () => {
+                        confetti.remove();
+                    };
+                }
+            }
+        });
+    </script>
+</body>
+</html>
