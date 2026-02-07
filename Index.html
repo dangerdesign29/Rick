@@ -1031,6 +1031,54 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
+        /* ESTILOS PARA OS CRÉDITOS */
+        .creditos-container {
+            margin: 50px auto 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            max-width: 500px;
+            transition: var(--transition);
+        }
+        
+        .creditos-container:hover {
+            background: rgba(255, 64, 129, 0.1);
+            border-color: rgba(255, 64, 129, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .creditos-texto {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 10px;
+        }
+        
+        .creditos-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .creditos-link:hover {
+            color: var(--primary);
+            background: rgba(255, 209, 102, 0.15);
+            transform: scale(1.05);
+        }
+        
+        .creditos-extra {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+            margin-top: 8px;
+        }
+
         /* Footer Romântico */
         footer {
             padding: 100px 50px 60px;
@@ -1242,6 +1290,12 @@
             .close-fullscreen { width: 55px; height: 55px; font-size: 1.3rem; top: 15px; right: 15px; }
             .fullscreen-info h3 { font-size: 2rem; }
             .fullscreen-info p { font-size: 1.2rem; }
+            .creditos-container {
+                margin: 40px auto 20px;
+                padding: 20px;
+            }
+            .creditos-texto { font-size: 1.1rem; }
+            .creditos-extra { font-size: 0.9rem; }
         }
 
         @media (max-width: 576px) {
@@ -1283,6 +1337,12 @@
             .fullscreen-info { bottom: 20px; padding: 15px; }
             .fullscreen-info h3 { font-size: 1.6rem; }
             .fullscreen-info p { font-size: 1rem; }
+            .creditos-container {
+                margin: 30px auto 15px;
+                padding: 15px;
+            }
+            .creditos-texto { font-size: 1rem; }
+            .creditos-link { padding: 1px 4px; }
         }
     </style>
 </head>
@@ -1542,7 +1602,7 @@
             </div>
         </div>
 
-        <!-- Footer Romântico -->
+        <!-- Footer Romântico COM CRÉDITOS CORRIGIDOS -->
         <footer>
             <div class="footer-content">
                 <p class="footer-text">
@@ -1552,6 +1612,19 @@
                 <div class="signature">
                     Para sempre seu<span class="heart">❤</span>
                 </div>
+                
+                <!-- NOVA SEÇÃO DE CRÉDITOS - LINK CORRIGIDO -->
+                <div class="creditos-container">
+                    <p class="creditos-texto">
+                        Site criado com ❤️ por 
+                        <a href="https://www.instagram.com/danger_.design" 
+                           class="creditos-link">
+                            @danger_.design
+                        </a>
+                    </p>
+                    <p class="creditos-extra">Design e desenvolvimento personalizado para momentos especiais.</p>
+                </div>
+                <!-- FIM DA NOVA SEÇÃO -->
                 
                 <p style="margin-top: 40px; color: rgba(255,255,255,0.7); font-size: 1.1rem;">
                     Com todo meu amor, no seu dia especial e em todos os outros<br>
@@ -2021,8 +2094,12 @@
         console.log("✅ VÍDEO DO JUMPSHARE INCORPORADO!");
         console.log("✅ BOTÃO DE TELA CHEIA ADICIONADO!");
         console.log("✅ TÍTULO 'NOSSO VÍDEO ESPECIAL' CENTRALIZADO!");
+        console.log("✅ CRÉDITOS PARA DANGER DESIGN ADICIONADOS!");
+        console.log("✅ LINK DO INSTAGRAM CORRIGIDO PARA ABRIR NA MESMA ABA!");
         console.log("");
-        console.log("🎯 NOVAS FUNCIONALIDADES:");
+        console.log("🎯 FUNCIONALIDADES:");
+        console.log("   • Créditos para @danger_.design no rodapé");
+        console.log("   • Link do Instagram abre na MESMA aba");
         console.log("   • Botão de tela cheia personalizado");
         console.log("   • Modo tela cheia com fundo escuro");
         console.log("   • Títulos centralizados corretamente");
@@ -2030,6 +2107,7 @@
         console.log("");
         console.log("🎵 MÚSICA: 'Inesperado - Jorge & Matheus' está tocando");
         console.log("📷 FOTOS: 5 fotos românticas no carrossel");
+        console.log("👨‍💻 DESENVOLVEDOR: DANGER DESIGN (Instagram: @danger_.design)");
         console.log("");
         console.log("💝 APROVEITE ESTE MOMENTO ESPECIAL!");
     </script>
