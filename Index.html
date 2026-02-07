@@ -558,13 +558,25 @@
             border-radius: 30px;
             overflow: hidden;
             box-shadow: var(--shadow);
+            background: #000;
         }
 
-        .video-player {
+        /* Estilos para o vídeo responsivo */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 30px;
+        }
+
+        .video-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 600px;
-            display: block;
-            background: #000;
+            height: 100%;
+            border: none;
         }
 
         .video-overlay {
@@ -579,6 +591,8 @@
             justify-content: center;
             cursor: pointer;
             transition: var(--transition);
+            z-index: 10;
+            border-radius: 30px;
         }
 
         .video-overlay:hover {
@@ -607,6 +621,35 @@
             box-shadow: 0 30px 60px rgba(255, 64, 129, 0.6);
         }
 
+        /* BOTÃO DE TELA CHEIA */
+        .fullscreen-btn {
+            position: absolute;
+            bottom: 100px;
+            right: 30px;
+            background: rgba(26, 11, 46, 0.8);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1.8rem;
+            z-index: 20;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .fullscreen-btn:hover {
+            background: var(--primary);
+            transform: scale(1.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 40px rgba(255, 64, 129, 0.4);
+        }
+
         .video-info {
             position: absolute;
             bottom: 30px;
@@ -616,6 +659,8 @@
             color: var(--white);
             padding: 20px;
             background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            z-index: 15;
+            border-radius: 0 0 30px 30px;
         }
 
         .video-info h3 {
@@ -1034,13 +1079,100 @@
             text-shadow: 0 5px 15px rgba(255, 209, 102, 0.3);
         }
 
+        /* Tela Cheia Personalizada */
+        .fullscreen-mode {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(13, 5, 25, 0.98);
+            z-index: 3000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(30px);
+        }
+
+        .fullscreen-mode.active {
+            display: flex;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fullscreen-video {
+            width: 90vw;
+            height: 90vh;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+            position: relative;
+        }
+
+        .fullscreen-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-fullscreen {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1.8rem;
+            z-index: 10;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .close-fullscreen:hover {
+            background: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .fullscreen-info {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: var(--white);
+            padding: 25px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            z-index: 5;
+        }
+
+        .fullscreen-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .fullscreen-info p {
+            font-size: 1.4rem;
+            opacity: 0.9;
+        }
+
         /* Responsividade */
         @media (max-width: 1400px) {
             .start-title { font-size: 5rem; }
             .hero-title { font-size: 5rem; }
             .swiper { height: 750px; }
             .section-title { font-size: 3.5rem; }
-            .video-player { height: 500px; }
         }
 
         @media (max-width: 1200px) {
@@ -1052,7 +1184,6 @@
             .section-title { font-size: 3rem; }
             .lightbox-nav button { width: 80px; height: 80px; }
             .music-player { width: 380px; }
-            .video-player { height: 450px; }
         }
 
         @media (max-width: 992px) {
@@ -1068,8 +1199,9 @@
             .lightbox-description p { font-size: 1.4rem; }
             .music-player { width: 350px; padding: 30px; }
             .song-cover { width: 100px; height: 100px; }
-            .video-player { height: 400px; }
             .play-video-btn { width: 100px; height: 100px; font-size: 2.5rem; }
+            .fullscreen-btn { width: 60px; height: 60px; font-size: 1.5rem; bottom: 90px; right: 20px; }
+            .close-fullscreen { width: 60px; height: 60px; font-size: 1.5rem; top: 20px; right: 20px; }
         }
 
         @media (max-width: 768px) {
@@ -1092,10 +1224,13 @@
             .lightbox-nav button { width: 70px; height: 70px; }
             .footer-text { font-size: 1.3rem; padding: 40px; }
             .signature { font-size: 2.8rem; }
-            .video-player { height: 350px; }
             .play-video-btn { width: 80px; height: 80px; font-size: 2rem; }
             .video-info h3 { font-size: 1.6rem; }
             .video-info p { font-size: 1rem; }
+            .fullscreen-btn { width: 55px; height: 55px; font-size: 1.3rem; bottom: 80px; right: 15px; }
+            .close-fullscreen { width: 55px; height: 55px; font-size: 1.3rem; top: 15px; right: 15px; }
+            .fullscreen-info h3 { font-size: 2rem; }
+            .fullscreen-info p { font-size: 1.2rem; }
         }
 
         @media (max-width: 576px) {
@@ -1128,11 +1263,15 @@
             .lightbox-nav button { width: 60px; height: 60px; font-size: 2rem; }
             .footer-text { font-size: 1.1rem; padding: 30px; }
             .signature { font-size: 2.2rem; }
-            .video-player { height: 250px; }
             .play-video-btn { width: 60px; height: 60px; font-size: 1.5rem; }
             .video-info { bottom: 15px; padding: 10px; }
             .video-info h3 { font-size: 1.2rem; }
             .video-info p { font-size: 0.9rem; }
+            .fullscreen-btn { width: 50px; height: 50px; font-size: 1.2rem; bottom: 70px; right: 10px; }
+            .close-fullscreen { width: 50px; height: 50px; font-size: 1.2rem; top: 10px; right: 10px; }
+            .fullscreen-info { bottom: 20px; padding: 15px; }
+            .fullscreen-info h3 { font-size: 1.6rem; }
+            .fullscreen-info p { font-size: 1rem; }
         }
     </style>
 </head>
@@ -1268,23 +1407,65 @@
             <p class="section-subtitle">Uma surpresa especial para você, meu amor. Clique para assistir ao nosso vídeo</p>
             
             <div class="video-container">
-                <!-- VÍDEO LOCAL - SUBSTITUA ESTE LINK PELO SEU VÍDEO -->
-                <video class="video-player" id="videoPlayer" poster="https://iili.io/fmASB4f.jpg" controls>
-                    <source src="SEU_VIDEO_AQUI.mp4" type="video/mp4">
-                    <source src="https://www.kapwing.com/api/v2/m3u8/generate/698739f3375fd3c8ccb27070.m3u8" type="video/webm">
-                    Seu navegador não suporta vídeos HTML5.
-                </video>
-                <div class="video-overlay" id="videoOverlay">
-                    <button class="play-video-btn" id="playVideoBtn">
-                        <i class="fas fa-play"></i>
+                <!-- Container responsivo para o vídeo -->
+                <div class="video-wrapper">
+                    <!-- Iframe do Jumpshare -->
+                    <iframe 
+                        class="video-iframe"
+                        id="jumpshareVideo"
+                        src="https://jumpshare.com/embed/lXoNu4GSVj9NQCrExmaP" 
+                        frameborder="0" 
+                        webkitallowfullscreen 
+                        mozallowfullscreen 
+                        allowfullscreen
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                    </iframe>
+                    
+                    <!-- Overlay personalizado -->
+                    <div class="video-overlay" id="videoOverlay">
+                        <button class="play-video-btn" id="playVideoBtn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- BOTÃO DE TELA CHEIA -->
+                    <button class="fullscreen-btn" id="fullscreenBtn" title="Abrir em tela cheia">
+                        <i class="fas fa-expand"></i>
                     </button>
                 </div>
+                
+                <!-- Info personalizada -->
                 <div class="video-info">
                     <h3>Nosso Momento Especial</h3>
                     <p>Uma surpresa cheia de amor apenas para você</p>
                 </div>
             </div>
         </section>
+
+        <!-- Tela Cheia Personalizada -->
+        <div class="fullscreen-mode" id="fullscreenMode">
+            <div class="fullscreen-video">
+                <iframe 
+                    class="fullscreen-iframe"
+                    id="fullscreenIframe"
+                    src="https://jumpshare.com/embed/lXoNu4GSVj9NQCrExmaP" 
+                    frameborder="0" 
+                    webkitallowfullscreen 
+                    mozallowfullscreen 
+                    allowfullscreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                </iframe>
+                
+                <button class="close-fullscreen" id="closeFullscreen">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <div class="fullscreen-info">
+                    <h3>Nosso Momento Especial</h3>
+                    <p>Assista nosso vídeo em tela cheia</p>
+                </div>
+            </div>
+        </div>
 
         <!-- Lightbox - Tela Cheia -->
         <div class="lightbox" id="lightbox">
@@ -1396,9 +1577,15 @@
         const lightboxNext = document.getElementById('lightboxNext');
         
         // Vídeo elementos
-        const videoPlayer = document.getElementById('videoPlayer');
+        const jumpshareVideo = document.getElementById('jumpshareVideo');
         const videoOverlay = document.getElementById('videoOverlay');
         const playVideoBtn = document.getElementById('playVideoBtn');
+        
+        // Tela cheia elementos
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const fullscreenMode = document.getElementById('fullscreenMode');
+        const fullscreenIframe = document.getElementById('fullscreenIframe');
+        const closeFullscreen = document.getElementById('closeFullscreen');
         
         // Estado da aplicação
         let isPlaying = false;
@@ -1406,6 +1593,7 @@
         let hasStarted = false;
         let currentLightboxIndex = 0;
         let isVideoPlaying = false;
+        let isFullscreen = false;
         
         // Dados das fotos
         const photos = [
@@ -1455,7 +1643,7 @@
         
         // Criar elemento de áudio
         const audio = new Audio();
-        // SUBSTITUA ESTE LINK PELA SUA MÚSICA LOCAL:
+        // Música de fundo
         audio.src = 'https://cdn.hostmora.app/train-realign-bzn2e/3656a5af-b1bc-4069-924c-bb4e22902979/Jorge%20Mateus%20-%20Inesperado%20Terra%20Sem%20CEP%20(V%C3%ADdeo%20Oficial).mp3';
         audio.loop = true;
         
@@ -1501,7 +1689,6 @@
                 mainContent.classList.add('active');
                 playMusic();
                 showMusicPlayer();
-                createConfettiBurst();
                 swiper.autoplay.start();
                 addCarouselClickEvents();
                 createFloatingHearts();
@@ -1533,8 +1720,8 @@
             
             pauseMusic();
             if (isVideoPlaying) {
-                videoPlayer.pause();
                 isVideoPlaying = false;
+                playVideoBtn.innerHTML = '<i class="fas fa-play"></i>';
             }
         }
         
@@ -1578,22 +1765,53 @@
             }, 10);
         }
         
-        // Controlar vídeo
+        // Controlar vídeo do Jumpshare
         function playVideo() {
             if (!isVideoPlaying) {
-                videoPlayer.play();
+                // Remove overlay
                 videoOverlay.style.display = 'none';
                 playVideoBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 isVideoPlaying = true;
                 
                 // Pausar música de fundo
                 pauseMusic();
+                
+                // Tenta focar no iframe (pode ajudar com autoplay em alguns navegadores)
+                jumpshareVideo.focus();
             } else {
-                videoPlayer.pause();
+                // Para vídeo (difícil controlar iframe externo)
                 videoOverlay.style.display = 'flex';
                 playVideoBtn.innerHTML = '<i class="fas fa-play"></i>';
                 isVideoPlaying = false;
             }
+        }
+        
+        // Abrir vídeo em tela cheia
+        function openFullscreen() {
+            isFullscreen = true;
+            fullscreenMode.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Pausar música de fundo
+            pauseMusic();
+            
+            // Fechar player de música se estiver aberto
+            if (isPlayerVisible) {
+                musicPlayer.classList.remove('active');
+                isPlayerVisible = false;
+            }
+            
+            // Fechar lightbox se estiver aberto
+            if (lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        }
+        
+        // Fechar tela cheia
+        function closeFullscreenMode() {
+            isFullscreen = false;
+            fullscreenMode.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
         
         // Função para tocar música
@@ -1695,28 +1913,32 @@
         playVideoBtn.addEventListener('click', playVideo);
         videoOverlay.addEventListener('click', playVideo);
         
-        videoPlayer.addEventListener('play', function() {
+        // Tela cheia eventos
+        fullscreenBtn.addEventListener('click', openFullscreen);
+        closeFullscreen.addEventListener('click', closeFullscreenMode);
+        
+        // Detectar quando o iframe está tocando (aproximação)
+        jumpshareVideo.addEventListener('mouseenter', function() {
             isVideoPlaying = true;
-            videoOverlay.style.display = 'none';
             playVideoBtn.innerHTML = '<i class="fas fa-pause"></i>';
         });
         
-        videoPlayer.addEventListener('pause', function() {
-            isVideoPlaying = false;
-            videoOverlay.style.display = 'flex';
-            playVideoBtn.innerHTML = '<i class="fas fa-play"></i>';
+        jumpshareVideo.addEventListener('mouseleave', function() {
+            if (videoOverlay.style.display === 'flex') {
+                isVideoPlaying = false;
+                playVideoBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
         });
         
-        videoPlayer.addEventListener('ended', function() {
-            isVideoPlaying = false;
-            videoOverlay.style.display = 'flex';
-            playVideoBtn.innerHTML = '<i class="fas fa-play"></i>';
-        });
-        
-        // Fechar lightbox com ESC
+        // Fechar com ESC
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                closeLightbox();
+            if (e.key === 'Escape') {
+                if (lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+                if (fullscreenMode.classList.contains('active')) {
+                    closeFullscreenMode();
+                }
             }
             
             if (lightbox.classList.contains('active')) {
@@ -1741,6 +1963,12 @@
         lightbox.addEventListener('click', function(e) {
             if (e.target === lightbox) {
                 closeLightbox();
+            }
+        });
+        
+        fullscreenMode.addEventListener('click', function(e) {
+            if (e.target === fullscreenMode) {
+                closeFullscreenMode();
             }
         });
         
@@ -1775,31 +2003,21 @@
             }
         });
         
-        // INSTRUÇÕES PARA PERSONALIZAÇÃO
-        console.log("🎉 SITE DE ANIVERSÁRIO - PERSONALIZAÇÃO 🎉");
+        // Informações no console
+        console.log("🎉 SITE DE ANIVERSÁRIO - PRONTO! 🎉");
         console.log("");
-        console.log("✅ PROBLEMAS CORRIGIDOS:");
-        console.log("   • Todas as fotos aparecem corretamente");
-        console.log("   • Lightbox funciona perfeitamente");
-        console.log("   • Seção de vídeo local adicionada");
+        console.log("✅ VÍDEO DO JUMPSHARE INCORPORADO!");
+        console.log("✅ BOTÃO DE TELA CHEIA ADICIONADO!");
         console.log("");
-        console.log("📁 COMO ADICIONAR SEU VÍDEO LOCAL:");
-        console.log("   • Procure pela linha ~650 no HTML:");
-        console.log("     <video class='video-player' id='videoPlayer' poster='...'>");
-        console.log("   • Substitua 'SEU_VIDEO_AQUI.mp4' pelo caminho do seu vídeo");
-        console.log("   • Exemplo para vídeo local: 'videos/nosso-video.mp4'");
+        console.log("🎯 NOVAS FUNCIONALIDADES:");
+        console.log("   • Botão de tela cheia personalizado");
+        console.log("   • Modo tela cheia com fundo escuro");
+        console.log("   • Fecha com ESC ou botão X");
         console.log("");
-        console.log("📷 COMO ADICIONAR SUAS FOTOS:");
-        console.log("   • No array 'photos' (linha ~340 do JavaScript)");
-        console.log("   • Substitua os links pelas suas fotos");
-        console.log("   • Exemplo: 'fotos/nossa-foto-1.jpg'");
+        console.log("🎵 MÚSICA: 'Inesperado - Jorge & Matheus' está tocando");
+        console.log("📷 FOTOS: 5 fotos românticas no carrossel");
         console.log("");
-        console.log("🎵 COMO ADICIONAR SUA MÚSICA:");
-        console.log("   • Procure pela linha: audio.src = 'https://...' (linha ~290)");
-        console.log("   • Substitua pelo caminho da sua música");
-        console.log("   • Exemplo: 'musica/inesperado.mp3'");
-        console.log("");
-        console.log("💝 PRONTO! Seu site personalizado está funcionando!");
+        console.log("💝 APROVEITE ESTE MOMENTO ESPECIAL!");
     </script>
 </body>
 </html>
